@@ -1,134 +1,216 @@
-const startButton = document.querySelector('#start-Bttn');
-// Section for questions
-let questionSection = document.querySelector('#questions');
-
-let firstPageStart = document.querySelector('#start-page');
-let timeEl = document.querySelector('#timer');
-let scoreEl = document.querySelector('#scores');
-let quizTimer = document.querySelector('#timer');
-let quizBody = document.querySelector('#quiz');
-let scoreNameInput = document.querySelector('#nameForScore');
-let userFinalScore = document.querySelector('#your-Score');
-
-let questionBeingAnswered = 0;
+let timeEl = document.querySelector('#time');
 let timeLeft = 80;
-let timerInterval;
-let score = 0;
-let itsCorrect;
+let questionIndex = 0;
 
-let buttonA = document.querySelector('#a');
-let buttonB = document.querySelector('#b');
-let buttonC = document.querySelector('#c');
-let buttonD  = document.querySelector('#d');
+let introEl = document.querySelector('#first-Page');
+let questionsEl = document.querySelector('#questions');
+let allQuestions = document.querySelector('#all-Questions');
+let questionBeingAnswered = 0
+let yesNoEl = document.querySelector('#correct-Incorrect');
 
+const startBttn = document.querySelector('#start-Button')
+const ansBtn = document.querySelectorAll('button.button-Used');
+const answerA = document.querySelector('#buttonA')
+const answerB = document.querySelector('#buttonB')
+const answerC = document.querySelector('#buttonC')
+const answerD = document.querySelector('#buttonD')
+const viewScoreBtn = document.querySelector('#high-Scores');
 
-let questionBank = [
-  // Q,C,and  A for question 0
+let scoreEl = document.querySelector('#user-Score')
+const submitScore = document.querySelector('#submit-Score')
+const lastPageEl = document.querySelector('#last-Page')
+
+let initialInput = document.querySelector('#initials')
+let scoreRankEl = document.querySelector('#score-Rank')
+let scoreRank = []
+let highScoresEl = document.querySelector('#highscore-Display')
+let goBack = document.querySelector('#go-Back');
+let clearScores = document.querySelector('#clear-Scores');
+
+const questionBank = [
   {
-    question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'a. answer'
+    question: 'What element in JS represents a TRUE or FALSE value ?',
+    answers: [ 'A. Boolean', 
+    'B. String', 
+    'C. Function',
+    'D. Truthy' ],
+    correctAnswer: "0"
   },
 
   // Q,C,and A for question 1
   {
     question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'b. answer'
+    answers: [ 'A. Boolean', 
+    'B. String', 
+    'C. Function',
+    'D. Truthy' ],
+    correctAnswer: "1"
   },
 
   // Q,C,and A for question 2
   {
     question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'a. answer'
+    answers: [ 'A. Boolean', 
+    'B. String', 
+    'C. Function',
+    'D. Truthy' ],
+    correctAnswer: "2"
   },
 
   // Q,C,and A for question 3
   {
     question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'a. answer'
+    answers: [ 'A. Boolean', 
+    'B. String', 
+    'C. Function',
+    'D. Truthy' ],
+    correctAnswer: "2"
   },
   
   // Q,C,and A for question 4
   {
     question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'a. answer'
+    answers: [ 'A. Boolean', 
+    'B. String', 
+    'C. Function',
+    'D. Truthy' ],
+    correctAnswer: "2"
   },
 
   // Q,C,and A for question 5
   {
-    question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'a. answer'
-  },
-
-  // Q,C,and A for question 6
-  {
-    question: 'What is ... ?',
-    choices: ['a. answer', 'b. answer', 'c. answer', 'd. answer'],
-    correctAnswer: 'a. answer'
-  },
+    question: 'This is the last question ?',
+    answers: [ 'A. Yes', 
+    'B. No', 
+    'C. Function',
+    'D. Truthy' ],
+    correctAnswer: "2"
+  }
 ];
 
-let everyQuestionUsed = questionBank.length;
-
-function generateQuestions() {
-
-  if (questionBeingAnswered === everyQuestionUsed) {
-    return finalScore();
-  }
-  var currentQuestion = questionBank[questionBeingAnswered];
-  questionSection.innerHTML = '<p>' + currentQuestion.questionBank + '<p>';
-  buttonA.innerHTML = currentQuestion.choices[0];
-  buttonB.innerHTML = currentQuestion.choices[1];
-  buttonC.innerHTML = currentQuestion.choices[2];
-  buttonD.innerHTML = currentQuestion.choices[3];
-};
-
-function startQuiz(){
-  firstPageStart.style.display = 'none';
-  generateQuestions();
-
-  // Timer start
-  timerInterval = setInterval(function() {
+function setTime() {
+  let timerInterval = setInterval(function () {
     timeLeft--;
-    quizTimer.textContent = 'Time Left: ' + timeLeft;
-                                                     
-  if (timeLeft === 0) { 
+    timeEl.textContent = 'Time Left: ' + timeLeft + 's';
+
+  if (timeLeft === 0 || questionIndex === questionBank.length) {
     clearInterval(timerInterval);
-    finalScore();
-  }
- }, 1000);
-
-// function checkAnswer(answer){
-//   itsCorrect = questionBank[questionBeingAnswered].correctAnswer;
-
-//   if (answer === itsCorrect && questionBeingAnswered != everyQuestionUsed){
-//     score++;
-//     alert('That is Correct!');
-//     questionBeingAnswered++;
-//     generateQuestions();
-  
-//   } else if(answer !== itsCorrect && questionBeingAnswered !== everyQuestionUsed) {
-//     alert('That is incorrect.')
-//     currentQuestion++;
-//     generateQuestions();
-  
-//   } else {
-//     finalScore();
-//   }
-// }
-
-
-function finalScore() {
-    quizBody.style.display = 'none';
-    clearInterval(timerInterval);
-    scoreNameInput.value = '';
-    userFinalScore.innerHTML = 'You got ' + score + ' out of ' + questionSection.length + ' correct!';
+    questionsEl.style.display = 'none';
+    lastPageEl.style.display = 'block'
+    scoreEl.textContent = timeLeft;
+    }
+  }, 1000);
 }
-};
 
-startButton.addEventListener('click', startQuiz);
+function startQuiz() {
+  introEl.style.display = 'none';
+  questionsEl.style.display = 'block';
+  questionIndex = 0;
+
+  setTime();
+  generateQuestions(questionIndex);
+}
+
+function generateQuestions(index) {
+  if (index < questionBank.length) {
+    allQuestions.textContent = questionBank[index].question;
+    answerA.textContent = questionBank[index].answers[0];
+    answerB.textContent = questionBank[index].answers[1];
+    answerC.textContent = questionBank[index].answers[2];
+    answerD.textContent = questionBank[index].answers[3];
+  }
+
+}
+
+function checkAnswer(event) {
+  event.preventDefault();
+
+  yesNoEl.style.display = 'block'
+  let p = document.createElement('p');
+  yesNoEl.appendChild(p);
+
+  setTimeout(function () {
+    p.style.display = 'none';
+  }, 1000);
+
+  if (questionBank[questionIndex].correctAnswer === event.target.value) {
+    p.textContent = 'That is Correct!'
+  
+  } else if (questionBank[questionIndex].correctAnswer !== event.target.value) {
+    timeLeft = timeLeft - 5;
+    p.textContent = 'That is Incorrect.'
+  }
+
+  if (questionIndex < questionBank.length) {
+    questionIndex++;
+  }
+
+  generateQuestions(questionIndex);
+}
+
+ansBtn.forEach(item => {
+  item.addEventListener('click', checkAnswer);
+});
+
+startBttn.addEventListener('click', startQuiz);
+
+function userScoreInput(event) {
+  event.preventDefault();
+
+  lastPageEl.style.display = 'none';
+  highScoresEl.style.display = 'block'
+
+  let init = initialInput.value.toUpperCase();
+  
+  scoreRank.push({initials: init, score: timeLeft});
+
+  scoreRankEl.innerHTML= "";
+  for (let i = 0; i < scoreRank.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = `${scoreRank[i].initials}: ${scoreRank[i].score}`;
+    scoreRankEl.append(li); 
+  }
+
+  saveScores();
+  showAllScores();
+}
+
+function saveScores() {
+  localStorage.setItem('scoreRank', JSON.stringify(scoreRank));
+}
+
+submitScore.addEventListener('click', userScoreInput);
+
+function showAllScores() {
+  let savedRankList = JSON.parse(localStorage.getItem('scoreRank'));
+
+  if (savedRankList !== null){
+    scoreRank = savedRankList;
+  }
+}
+
+goBack.addEventListener('click', function() {
+  scoreRankEl.style.display = 'none';
+  introEl.style.display = 'block';
+  timeLeft = 80;
+  timeEl.textContent = `Time Left: ${timeLeft}`
+  
+});
+
+viewScoreBtn.addEventListener('click', function() {
+  if (highScoresEl.style.display === 'none') {
+    highScoresEl.style.display = 'block';
+  } else if (highScoresEl.style.display === 'block'){
+    highScoresEl.style.display = 'none';
+  } else {
+    return alert('Start Quiz to Save Your Score!')
+  }
+});
+
+function deleteStoredScores() {
+  localStorage.clear()
+  scoreRankEl.innerHTML=''
+}
+
+clearScores.addEventListener('click', deleteStoredScores);
+

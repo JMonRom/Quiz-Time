@@ -4,51 +4,75 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
 <body>
-  <header id="start-page">
-    <h1>Coding Quiz</h1>
-    <h2>This is a coding quiz etc... <br>
-      Ready to test your knowledge?
-    </h2>
-    <div class="buttons">
-      <button class="start-Quiz-Bttn" id="start-Bttn">Start Quiz</button>
-      <button class="scores-Bttn">High Scores</button>
+  <header>
+    <div> 
+      <button id="high-Scores"> View High Scores </button>
     </div>
     <div>
-      <button id="scores">View High Scores</button>
-      <!-- <h6 id="timer">Timer</h6> -->
+      <p id="time">Time: 80s</p>
     </div>
   </header>
+
   <main>
-    <section id="quiz">
-      <div id="timer">Time Left:</div>
-      
-      <div id="questions">
-        <p>I'm a question :</p>
+    <section id="first-Page">
+      <div>
+        <h1>Test Your JavaScript Knowledge !</h1>
+        <p>This is a coding quiz etc... <br>
+          Ready to test your knowledge?</p>
+        <button id="start-Button">Start Quiz</button>
       </div>
-       
-        <button id="a">A</button>
-        <button id="b">B</button>
-        <button id="c">C</button>
-        <button id="d">D</button>
-      
-    <section id="finalScore"></section>
-      <div id="your-Score"></div>
-      <div id="nameForScore"></div>
-      <button id="submitScore"> Submit Score </button>
-
     </section>
-  </main>
 
-  <script src="index.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <section id="questions">
+      <div>
+        <h2 id="all-Questions">Questions Go Here: </h2>
+        <ul>
+          <li><button class="button-Used" id="buttonA" type="button" value="0" >AnswerA</button></li>
+          <li><button class="button-Used"  id="buttonB" type="button" value="1" >AnswerB</button></li>
+          <li><button class="button-Used"  id="buttonC" type="button" value="2" >AnswerC</button></li>
+          <li><button class="button-Used"  id="buttonD" type="button" value="3" >AnswerD</button></li>
+        </ul>
+        <div id="correct-Incorrect"></div>
+      </div>
+    </section>
+
+    <section id="last-Page">
+      <div>
+        <h2>You have finished the Quiz !</h2>
+        
+        <p>Your score is: <span id="user-Score">0</span> 
+        </p>
+
+        <p> <span><input placeholder="Enter Initials" id="initials"></span>
+          <button type="button" id="submit-Score">Submit Score</button>
+
+        </p>
+      </div>
+    </section>
+
+    <section id="highscore-Display">
+      <div>
+        <h2>High Scores:</h2>
+        <ol id="score-Rank">
+
+        </ol>
+        <button type="button" id="go-Back">Go Back</button>
+        <button type="button" id= 'clear-Scores'>Clear Scores</button>
+      </div>
+    </section>
+
+
+  </main>
+  
+<script src="index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script src="./assets/js/script.js"></script> -->
-
 </body>
+
 </html>

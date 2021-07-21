@@ -3,3 +3,9 @@
 
 }
 
+#questions,
+#highscore-Display,
+#last-Page,
+#correct-Incorrect {
+  display: none;
+}

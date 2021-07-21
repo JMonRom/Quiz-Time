@@ -88,6 +88,7 @@ const questionBank = [
   }
 ];
 
+// function that will control how time element is displayed and if time/questions run out
 function setTime() {
   let timerInterval = setInterval(function () {
     timeLeft--;
@@ -102,6 +103,7 @@ function setTime() {
   }, 1000);
 }
 
+// Function for events that occur once start quiz button is selected
 function startQuiz() {
   introEl.style.display = 'none';
   questionsEl.style.display = 'block';
@@ -111,6 +113,7 @@ function startQuiz() {
   generateQuestions(questionIndex);
 }
 
+// cycle through and display all questions in the question bank
 function generateQuestions(index) {
   if (index < questionBank.length) {
     allQuestions.textContent = questionBank[index].question;
@@ -122,6 +125,7 @@ function generateQuestions(index) {
 
 }
 
+// will check to see if answer is correct or not and display it on screen before going to the next question in the cycle
 function checkAnswer(event) {
   event.preventDefault();
 
@@ -129,10 +133,12 @@ function checkAnswer(event) {
   let p = document.createElement('p');
   yesNoEl.appendChild(p);
 
+  // needed to keep incorrect/correct message from staying on page
   setTimeout(function () {
     p.style.display = 'none';
   }, 1000);
 
+  // keeps the incorrect/correct message that will pop up and under what circumstance it is considered correct/incorrect
   if (questionBank[questionIndex].correctAnswer === event.target.value) {
     p.textContent = 'That is Correct!'
   
@@ -148,12 +154,14 @@ function checkAnswer(event) {
   generateQuestions(questionIndex);
 }
 
+// makes sure it cycles and is able to check answers for all questions in q bank
 ansBtn.forEach(item => {
   item.addEventListener('click', checkAnswer);
 });
 
 startBttn.addEventListener('click', startQuiz);
 
+// function to allow user to input their name to save their score with and display it on the screen 
 function userScoreInput(event) {
   event.preventDefault();
 
@@ -175,12 +183,14 @@ function userScoreInput(event) {
   showAllScores();
 }
 
+// saves the scores in local storage
 function saveScores() {
   localStorage.setItem('scoreRank', JSON.stringify(scoreRank));
 }
 
 submitScore.addEventListener('click', userScoreInput);
 
+// will display all saved scores
 function showAllScores() {
   let savedRankList = JSON.parse(localStorage.getItem('scoreRank'));
 
@@ -189,13 +199,15 @@ function showAllScores() {
   }
 }
 
+// once go back button is pressed it will send back to first page
 goBack.addEventListener('click', function() {
-  scoreRankEl.style.display = 'none';
+  highScoresEl.style.display = 'none';
   introEl.style.display = 'block';
   timeLeft = 80;
   timeEl.textContent = `Time Left: ${timeLeft}`
   
 });
+
 
 viewScoreBtn.addEventListener('click', function() {
   if (highScoresEl.style.display === 'none') {
@@ -211,6 +223,7 @@ function deleteStoredScores() {
   localStorage.clear()
   scoreRankEl.innerHTML=''
 }
+
 
 clearScores.addEventListener('click', deleteStoredScores);
 

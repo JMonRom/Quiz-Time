@@ -39,52 +39,52 @@ const questionBank = [
 
   // Q,C,and A for question 1
   {
-    question: 'What is ... ?',
-    answers: [ 'A. Boolean', 
-    'B. String', 
+    question: 'What element in JavaScript would you use to store multiple values in a variable?',
+    answers: [ 'A. If statement', 
+    'B. Array', 
     'C. Function',
-    'D. Truthy' ],
+    'D. Header' ],
     correctAnswer: "1"
   },
 
   // Q,C,and A for question 2
   {
-    question: 'What is ... ?',
-    answers: [ 'A. Boolean', 
-    'B. String', 
-    'C. Function',
-    'D. Truthy' ],
-    correctAnswer: "2"
+    question: 'Which HTML element would you use to link your JavaScript file ?',
+    answers: [ 'A. <JavaScriptFile>', 
+    'B. <link>', 
+    'C. <section>',
+    'D. <script>' ],
+    correctAnswer: "3"
   },
 
   // Q,C,and A for question 3
   {
-    question: 'What is ... ?',
-    answers: [ 'A. Boolean', 
-    'B. String', 
-    'C. Function',
-    'D. Truthy' ],
-    correctAnswer: "2"
+    question: 'What is concatenation ?',
+    answers: [ 'A. Separating two strings apart.', 
+    'B. Combining two strings together.', 
+    'C. Converting text into numbers.',
+    'D. Linking your HTML to your JavaScript. ' ],
+    correctAnswer: "1"
   },
   
   // Q,C,and A for question 4
   {
-    question: 'What is ... ?',
-    answers: [ 'A. Boolean', 
-    'B. String', 
-    'C. Function',
-    'D. Truthy' ],
+    question: 'Which of the following is not a conditional statement in JS ?',
+    answers: [ 'A. If... ', 
+    'B. Else...', 
+    'C. Code...',
+    'D. Else if...' ],
     correctAnswer: "2"
   },
 
   // Q,C,and A for question 5
   {
-    question: 'This is the last question ?',
-    answers: [ 'A. Yes', 
-    'B. No', 
-    'C. Function',
-    'D. Truthy' ],
-    correctAnswer: "2"
+    question: 'Function ______ are the names listed in the function.',
+    answers: [ 'A. parameters', 
+    'B. titles', 
+    'C. call',
+    'D. objects' ],
+    correctAnswer: "0"
   }
 ];
 
@@ -107,6 +107,7 @@ function setTime() {
 function startQuiz() {
   introEl.style.display = 'none';
   questionsEl.style.display = 'block';
+  highScoresEl.style.display = 'none'
   questionIndex = 0;
 
   setTime();
@@ -136,7 +137,7 @@ function checkAnswer(event) {
   // needed to keep incorrect/correct message from staying on page
   setTimeout(function () {
     p.style.display = 'none';
-  }, 1000);
+  }, 400);
 
   // keeps the incorrect/correct message that will pop up and under what circumstance it is considered correct/incorrect
   if (questionBank[questionIndex].correctAnswer === event.target.value) {
@@ -217,6 +218,7 @@ viewScoreBtn.addEventListener('click', function() {
   } else {
     return alert('Start Quiz to Save Your Score!')
   }
+
 });
 
 function deleteStoredScores() {

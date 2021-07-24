@@ -1,5 +1,7 @@
 :root {
-  --buttonColor: pink;
+  --buttonColor: white;
+  --bodyColor: #f199b3;
+  --bodyFont: #18ab7f;
 
 }
 
@@ -8,4 +10,46 @@
 #last-Page,
 #correct-Incorrect {
   display: none;
+}
+
+body {
+  background-color: var(--bodyColor);
+  display: flex;
+  flex-direction: column;
+}
+
+#start-Button {
+  background-color: var(--buttonColor);
+  padding: 5px;
+  border-radius: 20px;
+}
+
+#high-Scores {
+  margin: 3%;
+  background-color: var(--buttonColor);
+}
+
+#time {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+#first-Page {
+  margin-top: 10%;
+  text-align: center;
+  color: var(--bodyFont);
+}
+
+.button-Used {
+  background-color: var(--buttonColor);
+  color: var(--bodyFont);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+li {
+  list-style-type: none;
 }

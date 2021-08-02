@@ -1,3 +1,4 @@
+// variables for time element and questions
 let timeEl = document.querySelector('#time');
 let timeLeft = 80;
 let questionIndex = 0;
@@ -8,6 +9,7 @@ let allQuestions = document.querySelector('#all-Questions');
 let questionBeingAnswered = 0
 let yesNoEl = document.querySelector('#correct-Incorrect');
 
+// variables for the buttons
 const startBttn = document.querySelector('#start-Button')
 const ansBtn = document.querySelectorAll('button.button-Used');
 const answerA = document.querySelector('#buttonA')
@@ -16,6 +18,7 @@ const answerC = document.querySelector('#buttonC')
 const answerD = document.querySelector('#buttonD')
 const viewScoreBtn = document.querySelector('#high-Scores');
 
+// variables for the submitting and storing high scores 
 let scoreEl = document.querySelector('#user-Score')
 const submitScore = document.querySelector('#submit-Score')
 const lastPageEl = document.querySelector('#last-Page')
@@ -169,9 +172,9 @@ function userScoreInput(event) {
   lastPageEl.style.display = 'none';
   highScoresEl.style.display = 'block'
 
-  let init = initialInput.value.toUpperCase();
+  let uInitial = initialInput.value.toUpperCase();
   
-  scoreRank.push({initials: init, score: timeLeft});
+  scoreRank.push({initials: uInitial, score: timeLeft});
 
   scoreRankEl.innerHTML= "";
   for (let i = 0; i < scoreRank.length; i++) {

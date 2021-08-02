@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <title>Quiz Time</title>
 </head>
 <body>
   <header>
@@ -20,7 +20,7 @@
 
   <main>
     <section id="first-Page">
-      <div>
+      <div class="beg-End" >
         <h1>Test Your JavaScript Knowledge !</h1>
         <p>This is a coding quiz that will cover basic JS concepts <br>
           Ready to test your knowledge?</p>
@@ -28,7 +28,7 @@
       </div>
     </section>
 
-    <section id="questions">
+    <section class="quiz" id="questions">
       <div>
         <h2 id="all-Questions">Questions Go Here: </h2>
         <ul>
@@ -41,7 +41,7 @@
       </div>
     </section>
 
-    <section id="last-Page">
+    <section class="quiz" id="last-Page">
       <div>
         <h2>You have finished the Quiz !</h2>
         
@@ -55,17 +55,20 @@
       </div>
     </section>
 
-    <section id="highscore-Display">
-      <div>
+    <display class="beg-End"  id="highscore-Display">
+      <div id="score-Style">
         <h2>High Scores:</h2>
         <ol id="score-Rank">
 
         </ol>
-        <button type="button" id="go-Back">Go Back</button>
-        <button type="button" id= "clear-Scores">Clear Scores</button>
+        <div >
+          <button class="score-Buttons" type="button" id="go-Back">Go Back</button>
+          <button class="score-Buttons" type="button" id= "clear-Scores">Clear Scores</button>
+        </div>
       </div>
-    </section>
+    </display>
 
+    <footer>Made with <span style="color: #e25555;">&hearts;</span> by Jonathan </footer>
 
   </main>
   

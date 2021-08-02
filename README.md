@@ -23,4 +23,4 @@ I would often find small breaks in my code so I would trace back before moving o
 
 Here is a link to my deployed page that will display a quiz you can take to test your programming knowledge.
 
-[Quiz PageLink]()
+[Quiz PageLink](https://jmonrom.github.io/Quiz-Time/)
